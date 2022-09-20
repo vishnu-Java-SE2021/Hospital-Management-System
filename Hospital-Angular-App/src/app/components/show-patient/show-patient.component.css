@@ -1,0 +1,18 @@
+.container{
+    background-color: azure;
+    width: 500px;
+    padding: 20px 20px;
+    margin-top:100px;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 3px 33px -1px rgba(0,0,0,0.58);
+    -moz-box-shadow: 1px 3px 33px -1px rgba(0,0,0,0.58);
+    box-shadow: 1px 3px 33px -1px rgba(0,0,0,0.58);
+}
+
+button{
+    height: 40px;
+}
+
+a{
+    text-decoration: none;
+}

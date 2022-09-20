@@ -1,0 +1,58 @@
+<div class="container px-5 py-3">
+    <h2 class="text-center text-primary mb-4 font-weight-bold">Doctor Registration</h2>
+    <form autocomplete="off" #register='ngForm' (ngSubmit)="register.valid && submit()">
+
+        
+        <div class="row my-2">
+
+            <div>
+                <mat-form-field appearance="fill" class="ml-3 mr-5">
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]='doctor.name' name="doctorName" #doctorName="ngModel" required pattern="[A-Za-z ]{5,20}">
+                </mat-form-field>
+                <div *ngIf="doctorName.dirty && (doctorName.touched || register.invalid)">
+                    <span *ngIf="doctorName.errors?.['required']" class="alert text-danger">name is required</span>
+                    <span *ngIf="doctorName.errors?.['pattern']" class="alert text-danger">name is too short or invalid</span>
+                </div>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill" class="mr-3">
+                    <mat-label>Age</mat-label>
+                    <input matInput [(ngModel)]='doctor.age' name="doctorAge" #doctorAge="ngModel" required
+                        pattern="[2-9]{1}[0-9]{1}">
+                </mat-form-field>
+                <div *ngIf="doctorAge.dirty && (doctorAge.touched || register.invalid)">
+                    <span *ngIf="doctorAge.errors?.['required']" class="alert text-danger">age is required</span>
+                    <span *ngIf="doctorAge.errors?.['pattern']" class="alert text-danger">enter proper age</span>
+                </div>
+            </div>
+            </div>
+
+        <div class="row my-2 py-auto">
+            <h4 class="ml-3 mr-3 mt-1 font-weight-bold">Gender &nbsp; :: </h4>
+            <mat-radio-group  [(ngModel)]="doctor.gender" name="gender">
+                <mat-radio-button value="Male" color="primary"><label class="mr-4">Male</label></mat-radio-button>
+                <mat-radio-button value="Female" color="accent"><label class="mr-4">Female</label></mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="row my-2">
+            <mat-form-field appearance="fill" class="ml-3 mr-5">
+                <mat-label>--select specialization--</mat-label>
+                <mat-select [(ngModel)]="doctor.specialization" name="doctorSpecialization" #doctorSpecialization="ngModel"
+                    required>
+                    <mat-option *ngFor="let specialist of specializations" [value]="specialist">{{specialist}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+
+        <div class="row my-2">
+            <button mat-raised-button type="submit" [disabled]="!register.valid" color="primary"
+                class="ml-3 mr-5">Register</button>
+            <button mat-raised-button type="reset" color="warn" class="ml-4">Clear</button>
+        </div>
+    </form>
+</div>

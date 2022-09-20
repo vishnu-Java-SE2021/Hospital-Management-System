@@ -1,0 +1,54 @@
+<div class="container px-5 py-3">
+    <h2 class="text-center text-success font-weight-bold mb-3">Patient Registration</h2>
+    <div>
+        <form autocomplete="off" #register='ngForm' (ngSubmit)="register.valid && submit()">
+
+            <div class="row my-2">
+                <div>
+                    <mat-form-field appearance="fill" class="ml-3 mr-5">
+                        <mat-label>Name</mat-label>
+                        <input matInput [(ngModel)]='patient.name' name="patientName" #patientName="ngModel" required
+                            pattern="[A-Za-z ]{5,20}">
+                    </mat-form-field>
+                    <div *ngIf="patientName.dirty && (patientName.touched || register.invalid)">
+                        <span *ngIf="patientName.errors?.['required']" class="alert text-danger">name is required</span>
+                        <span *ngIf="patientName.errors?.['pattern']" class="alert text-danger">name is too short or
+                            invalid</span>
+                    </div>
+                </div>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>doctor name</mat-label>
+                    <mat-select [(ngModel)]="patient.visitedDoc" name="doctorName">
+                        <mat-option *ngFor="let doctorName of doctorsNames" [value]="doctorName">{{doctorName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="row my-2">
+                <mat-form-field appearance="fill" class="ml-3">
+                    <mat-label>visted date</mat-label>
+                    <input matInput [matDatepicker]="picker" name="dateOfVisit" [(ngModel)]='patient.dateOfVisit'
+                        required>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="row my-2">
+                <mat-form-field appearance="fill" class="ml-3">
+                    <mat-label>prescription</mat-label>
+                    <textarea matInput [(ngModel)]='patient.prescription' name="prescription" required></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="row my-2">
+                <button mat-raised-button type="submit" [disabled]="!register.valid" color="primary"
+                    class="mx-3">Register</button>
+                <button mat-raised-button type="reset" color="warn" class="ml-4">Clear</button>
+            </div>
+        </form>
+    </div>
+</div>

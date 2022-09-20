@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="text-center font-weight-bold">Patients List</h1>
+    <table class="table table-striped table-bordered my-4">
+        <thead class="table-dark font-weight-bold text-center">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Visited Doctor</td>
+                <td>Date of Visit</td>
+                <td>Prescription</td>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr *ngFor="let patient of patients">
+                <td scope="row">{{patient.id}}</td>
+                <td>{{patient.name}}</td>
+                <td>{{patient.visitedDoc}}</td>
+                <td>{{patient.dateOfVisit}}</td>
+                <td>{{patient.prescription}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="row ml-2">
+        <a routerLink="/">
+          <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+            <mat-icon>home</mat-icon>
+            <mat-label class="pt-5">HomePage</mat-label>
+          </button>
+        </a>
+      </div>
+</div>
